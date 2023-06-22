@@ -41,3 +41,4 @@ function root = bisection(func, xl, xu, maxIterations, tolerance)
   root = xr;
 
 endfunction
+disp("hola");
