@@ -1,13 +1,15 @@
-function [root, iteration] = newton(func, diffFunc, initialValue, tolerance, maxIterations)
-  
-  root = initialValue;
-  iteration = 0;
+function p0 = newton(f,df,p0,delta,maxI)
+   err = inf;
 
-  while abs(func(root)) > tolerance && iteration < maxIterations
+   for k=1:maxI
+     yp0=feval(f,p0);
+     dyp0=feval(df,p0);
+     p1=p0-(yp0/dyp0);
+     err=abs((p1-p0)/p1);
+     p0=p1;
+     if err<delta
+      break
+    end
 
-    root = root - func(root) / diffFunc(root);
-    iteration += 1;
-
-  end
-
+   endfor
 endfunction
